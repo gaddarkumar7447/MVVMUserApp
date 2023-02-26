@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="#e9e9e9"
+        android:layout_height="match_parent"
+        tools:context=".ShowUserDetails">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="320dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="30dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:shadowRadius="10"
+            android:cropToPadding="true"
+            android:padding="5dp"
+            android:id="@+id/imageView"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            android:layout_height="230dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/nameUser"
+            android:text="Gaddar"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/genderUser"
+            android:text="Gender"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/emailUser"
+            android:text="Email"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/phoneUser"
+            android:text="Phone"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:id="@+id/addressUser"
+            android:text="Address"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+    </RelativeLayout>
+</layout>

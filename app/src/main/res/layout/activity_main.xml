@@ -13,15 +13,29 @@
         android:background="#e9e9e9"
         tools:context=".MainActivity">
 
+        <EditText
+            android:layout_width="match_parent"
+            android:id="@+id/search_user"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/search_back"
+            android:hint="Search user"
+            android:padding="10sp"
+            android:textColor="@color/black"
+            android:inputType="text"
+            android:layout_height="45dp"/>
+
         <com.skydoves.androidveil.VeilRecyclerFrameView
             android:layout_width="match_parent"
             android:layout_marginLeft="5dp"
+            android:layout_below="@+id/search_user"
             android:layout_marginRight="5dp"
             android:id="@+id/recyclerViewVeil"
             app:veilFrame_baseAlpha="0.6"
-            app:veilFrame_baseColor="@color/purple_500"
+            app:veilFrame_baseColor="@color/white"
             app:veilFrame_highlightAlpha="1.0"
-            app:veilFrame_highlightColor="@color/purple_500"
+            app:veilFrame_highlightColor="@color/white"
             app:veilFrame_isItemWrapContentHeight="true"
             app:veilFrame_isItemWrapContentWidth="false"
             app:veilFrame_layout="@layout/user_details"
