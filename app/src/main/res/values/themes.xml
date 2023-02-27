@@ -19,8 +19,10 @@
         <item name="windowSplashScreenBackground">@color/back</item>
         <item name="windowSplashScreenAnimationDuration">5000</item>
         <item name="android:statusBarColor">@color/back</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <!--<item name="windowSplashScreenAnimatedIcon">@drawable/user</item>-->
         <item name="postSplashScreenTheme">@style/Theme.UserMVVMApp</item>
+
+
     </style>
     
 </resources>

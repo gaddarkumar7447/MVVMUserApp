@@ -1,5 +1,6 @@
 package com.example.usermvvmapp.mvvm
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.usermvvmapp.api.UsersInterface
@@ -13,7 +14,7 @@ class Repository(private val usersInterface: UsersInterface) {
     get() = mutableGetData
 
     //
-    suspend fun getUU() = usersInterface.getUserData(300)
+    //suspend fun getUU() = usersInterface.getUserData(300)
 
     suspend fun getAllUserData(){
         val result = usersInterface.getUserData(200).body()

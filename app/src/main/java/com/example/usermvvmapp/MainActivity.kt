@@ -56,46 +56,36 @@ class MainActivity : AppCompatActivity() {
         }*/
 
 
-        val instance = ApiUtilities.getApiUtilities().create(UsersInterface::class.java)
-        val respository = Repository(instance)
-        modelViewClass = ViewModelProvider(this@MainActivity, ViewModelFactoryClass(respository))[ModelViewClass::class.java]
+        if (isInternetAvailable(this)){
+            val instance = ApiUtilities.getApiUtilities().create(UsersInterface::class.java)
+            val respository = Repository(instance)
+            modelViewClass = ViewModelProvider(this@MainActivity, ViewModelFactoryClass(respository))[ModelViewClass::class.java]
 
-        callViewModelMethod(modelViewClass)
+            callViewModelMethod(modelViewClass)
+        }else{
+            Snackbar.make(binding.root, "Check internet connection...", Snackbar.LENGTH_LONG).show()
+        }
 
-        /*binding.searchUser.addTextChangedListener(object : TextWatcher{
+        binding.searchUser.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                users.clear()
-                if (userName[1].getAllName() == p0){
-                    Log.d("name", userName[1].getAllName())
-                    adapterUser = AdapterUser(this@MainActivity, users)
-                    binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
-                    binding.recyclerViewVeil.unVeil()
-                }
-                *//*for (i in 0 until userName.size){
-                    if (i.equals(p0) || userName[i].getAllName() == p0){
-                        Log.d("UserName", userName[i].getAllName())
-                        adapterUser = AdapterUser(this@MainActivity, users)
-                        binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
-                        binding.recyclerViewVeil.unVeil()
 
-                    }
-                }*//*
-                *//*val filterUser = if (p0.isNullOrEmpty()){
-                    userName
-                }else{
-                    userName.filter {
-                        (it.title?.contains(p0, true) ?: it.first?.contains(p0, true)) == true || it.last?.contains(p0, true) ?: true
-                    }
+                val filteredUsers = users.filter { user ->
+                    user.name?.getAllName()?.contains(p0.toString()) ?: false ||
+                    user.phone?.contains(p0.toString()) ?: false
                 }
-                for (i in filterUser.indices){
+                if (filteredUsers.isEmpty()){
+                    Snackbar.make(binding.root, "No data found ${p0.toString()}", Snackbar.LENGTH_LONG).show()
+                }
 
-                }*//*
+                adapterUser = AdapterUser(this@MainActivity, filteredUsers)
+                binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
+                binding.recyclerViewVeil.unVeil()
             }
 
             override fun afterTextChanged(p0: Editable?) {}
-        })*/
+        })
         /*MainScope().launch {
             val instance = ApiUtilities.getApiUtilities().create(UsersInterface::class.java)
             val data = instance.getUserData(200)
@@ -123,11 +113,12 @@ class MainActivity : AppCompatActivity() {
                 val result = it.results
                 users = result as MutableList<Result>
 
-                for (i in 0 until users.size){
+                // adding username in userList
+                /*for (i in 0 until users.size){
                     users[i].name?.let { it1 -> userName.add(it1) }
-                }
+                }*/
 
-                Log.d("UsersData", "UserName: ${userName[1].getAllName()}")
+                //Log.d("UsersData", "UserName: ${userName[1].getAllName()}")
 
                 adapterUser = AdapterUser(this@MainActivity, users)
                 binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))

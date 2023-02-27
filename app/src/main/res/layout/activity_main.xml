@@ -20,7 +20,7 @@
             android:layout_marginRight="10sp"
             android:layout_marginTop="2dp"
             android:background="@drawable/search_back"
-            android:hint="Search user"
+            android:hint="@string/search_user_name_or_phone"
             android:padding="10sp"
             android:textColor="@color/black"
             android:inputType="text"
