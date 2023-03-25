@@ -9,7 +9,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.example.usermvvmapp.R
 import com.example.usermvvmapp.ShowUserDetails
 import com.example.usermvvmapp.extension.ExtensionClass.getAllName
@@ -25,20 +28,26 @@ class AdapterUser(private val context: Context, private val users: List<com.exam
 
     override fun onBindViewHolder(holder: ViewHolderUser, position: Int) {
         val currentPosition = users[position]
-        holder.name.text = currentPosition.name?.getAllName()
-        holder.email.text = currentPosition.email
-        holder.phone.text = currentPosition.phone
+        with(holder){
+            name.text = currentPosition.name?.getAllName()
+            email.text = currentPosition.email
+            phone.text = currentPosition.phone
+        }
 
+
+        //holder.image.load(currentPosition.picture?.large)
         Glide.with(context).load(currentPosition.picture?.large).into(holder.image)
 
         holder.cardView.setOnClickListener {
             val intent = Intent(context, ShowUserDetails::class.java)
-            intent.putExtra("image", currentPosition.picture?.large)
-            intent.putExtra("email", currentPosition.email.toString())
-            intent.putExtra("name", currentPosition.name?.getAllName().toString())
-            intent.putExtra("phone", currentPosition.phone.toString())
-            intent.putExtra("gender", currentPosition.gender)
-            intent.putExtra("location", currentPosition.location?.getUserLocation().toString())
+            with(intent){
+                putExtra("image", currentPosition.picture?.large)
+                putExtra("email", currentPosition.email.toString())
+                putExtra("name", currentPosition.name?.getAllName().toString())
+                putExtra("phone", currentPosition.phone.toString())
+                putExtra("gender", currentPosition.gender)
+                putExtra("location", currentPosition.location?.getUserLocation().toString())
+            }
             context.startActivity(intent)
         }
     }

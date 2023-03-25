@@ -23,6 +23,7 @@ import com.example.usermvvmapp.model.Users
 import com.example.usermvvmapp.mvvm.ModelViewClass
 import com.example.usermvvmapp.mvvm.Repository
 import com.example.usermvvmapp.mvvm.ViewModelFactoryClass
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -31,29 +32,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var users: MutableList<Result>
     private lateinit var modelViewClass: ModelViewClass
 
-    private lateinit var userName : MutableList<Name>
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         users = mutableListOf()
-        userName = mutableListOf()
-
-        /*setUpRecyclerView()
-        loadDataFromViewModel()*/
 
         binding.recyclerViewVeil.addVeiledItems(12)
         adapterUser = AdapterUser(this@MainActivity, users)
         binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this))
         binding.recyclerViewVeil.veil()
-
-        /*binding.recyclerViewVeil.apply {
-            adapterUser = AdapterUser(this@MainActivity, users)
-            this.veil()
-            this.setAdapter(adapterUser)
-        }*/
 
 
         if (isInternetAvailable(this)){
@@ -113,13 +102,6 @@ class MainActivity : AppCompatActivity() {
                 val result = it.results
                 users = result as MutableList<Result>
 
-                // adding username in userList
-                /*for (i in 0 until users.size){
-                    users[i].name?.let { it1 -> userName.add(it1) }
-                }*/
-
-                //Log.d("UsersData", "UserName: ${userName[1].getAllName()}")
-
                 adapterUser = AdapterUser(this@MainActivity, users)
                 binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
                 binding.recyclerViewVeil.unVeil()
@@ -141,17 +123,6 @@ class MainActivity : AppCompatActivity() {
         }
     }*/
 
-    private fun showLoading() {
-
-    }
-
-    private fun showError() {
-
-    }
-
-    private fun showData(results: List<Result>?) {
-
-    }
 
     private fun setUpRecyclerView() {
         binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this))

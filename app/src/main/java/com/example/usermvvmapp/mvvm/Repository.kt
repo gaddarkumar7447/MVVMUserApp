@@ -1,6 +1,5 @@
 package com.example.usermvvmapp.mvvm
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.usermvvmapp.api.UsersInterface
