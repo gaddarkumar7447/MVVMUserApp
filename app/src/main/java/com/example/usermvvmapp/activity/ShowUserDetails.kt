@@ -1,9 +1,8 @@
-package com.example.usermvvmapp
+package com.example.usermvvmapp.activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.example.usermvvmapp.databinding.ActivityShowUserDetailsBinding
 
