@@ -1,7 +1,6 @@
 package com.example.usermvvmapp.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.usermvvmapp.R
-import com.example.usermvvmapp.activity.ShowUserDetails
 import com.example.usermvvmapp.extension.ExtensionClass.getAllName
-import com.example.usermvvmapp.extension.ExtensionClass.getUserLocation
 import com.example.usermvvmapp.utilities.SelectItem
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.imageview.ShapeableImageView
@@ -47,6 +44,5 @@ class AdapterUser(private val context: Context, private val users: List<com.exam
         val phone: TextView = view.findViewById(R.id.phone)
         val image: ShapeableImageView = view.findViewById(R.id.image)
         val cardView : MaterialCardView = view.findViewById(R.id.cardView)
-
     }
 }

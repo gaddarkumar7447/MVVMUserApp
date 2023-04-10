@@ -19,6 +19,7 @@ import com.example.usermvvmapp.model.Result
 import com.example.usermvvmapp.mvvm.ModelViewClass
 import com.example.usermvvmapp.mvvm.Repository
 import com.example.usermvvmapp.mvvm.ViewModelFactoryClass
+import com.example.usermvvmapp.paging.ui.PagingMainActivity
 import com.example.usermvvmapp.utilities.ApiResponce
 import com.example.usermvvmapp.utilities.SelectItem
 import com.google.android.material.snackbar.Snackbar
@@ -36,34 +37,13 @@ class MainActivity : AppCompatActivity(), SelectItem {
 
         users = mutableListOf()
 
+        binding.paging.setOnClickListener { startActivity(Intent(this, PagingMainActivity::class.java)) }
+
         initializeViewModel()
 
-        callViewModelMethod(modelViewClass)
+        callViewModelMethod()
 
         searchData()
-    }
-
-    private fun searchData() {
-        binding.searchUser.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                val filteredUsers = users.filter { user ->
-                    user.name?.getAllName()?.contains(p0.toString()) ?: false || user.phone?.contains(p0.toString()) ?: false
-                }
-                if (filteredUsers.isEmpty()) {
-                    Snackbar.make(binding.root, "No data found ${p0.toString()}", Snackbar.LENGTH_LONG).show()
-                }
-
-                adapterUser = AdapterUser(this@MainActivity, filteredUsers, this@MainActivity)
-                binding.recyclerViewVeil.setAdapter(
-                    adapterUser,
-                    LinearLayoutManager(this@MainActivity)
-                )
-                binding.recyclerViewVeil.unVeil()
-            }
-
-            override fun afterTextChanged(p0: Editable?) {}
-        })
     }
 
     private fun initializeViewModel() {
@@ -73,7 +53,7 @@ class MainActivity : AppCompatActivity(), SelectItem {
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun callViewModelMethod(modelViewClass: ModelViewClass) {
+    private fun callViewModelMethod() {
         modelViewClass.dataUser.observe(this@MainActivity, Observer {
             when (it) {
                 is ApiResponce.Loading -> {
@@ -107,6 +87,29 @@ class MainActivity : AppCompatActivity(), SelectItem {
             putExtra("location", currentPosition.location?.getUserLocation().toString())
         }
         startActivity(intent)
+    }
+
+    private fun searchData() {
+        binding.searchUser.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val filteredUsers = users.filter { user ->
+                    user.name?.getAllName()?.contains(p0.toString()) ?: false || user.phone?.contains(p0.toString()) ?: false
+                }
+                if (filteredUsers.isEmpty()) {
+                    Snackbar.make(binding.root, "No data found ${p0.toString()}", Snackbar.LENGTH_LONG).show()
+                }
+
+                adapterUser = AdapterUser(this@MainActivity, filteredUsers, this@MainActivity)
+                binding.recyclerViewVeil.setAdapter(
+                    adapterUser,
+                    LinearLayoutManager(this@MainActivity)
+                )
+                binding.recyclerViewVeil.unVeil()
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
     }
 }
 
