@@ -92,12 +92,10 @@ class PagingMainActivity : AppCompatActivity() {
             }
 
         }
-
-
     }
 
     private fun initializeViewModel() {
-        val apiIntence = ApiIntence.apiInstance().create(ApiServices::class.java)
+        val apiIntence = ApiIntence.apiInstance(this).create(ApiServices::class.java)
         viewModel = ViewModelProvider(this, CharacterViewModelFactory(apiIntence))[CharacterViewModel::class.java]
     }
 }
