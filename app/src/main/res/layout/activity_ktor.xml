@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ktor.activity.KtorActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:id="@+id/ktor_recycler_view"
+            tools:listitem="@layout/ktor_layout"
+            android:layout_height="match_parent"/>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:id="@+id/progress_bar"
+            android:visibility="gone"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+</layout>

@@ -38,8 +38,15 @@
                 android:id="@+id/paging"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                android:layout_marginStart="40sp"
                 android:text="Paging" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:text="@string/ktor"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:id="@+id/ktor"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

@@ -15,6 +15,7 @@ import com.example.usermvvmapp.api.UsersInterface
 import com.example.usermvvmapp.databinding.ActivityMainBinding
 import com.example.usermvvmapp.extension.ExtensionClass.getAllName
 import com.example.usermvvmapp.extension.ExtensionClass.getUserLocation
+import com.example.usermvvmapp.ktor.activity.KtorActivity
 import com.example.usermvvmapp.model.Result
 import com.example.usermvvmapp.mvvm.ModelViewClass
 import com.example.usermvvmapp.mvvm.Repository
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity(), SelectItem {
         users = mutableListOf()
 
         binding.paging.setOnClickListener { startActivity(Intent(this, PagingMainActivity::class.java)) }
+        binding.ktor.setOnClickListener { startActivity(Intent(this, KtorActivity::class.java)) }
 
         initializeViewModel()
 
