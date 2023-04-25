@@ -12,9 +12,12 @@ https://user-images.githubusercontent.com/74999138/221659986-770c05d6-99df-464f-
 + Modern Splash Screen
 + Retrofit (for API Calling).
 + Facebook Shimmer Layout.
++ Sealed Clesses
 + Glide for image
 + Kotlin Coroutines.
 + Network Avaibility
++ Paging
++ Ktor
 
 # Benefits of using MVVM Architecture
 + Your code is decoupled.
