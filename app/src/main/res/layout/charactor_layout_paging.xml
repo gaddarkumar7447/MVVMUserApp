@@ -2,13 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         app:cardElevation="5dp">

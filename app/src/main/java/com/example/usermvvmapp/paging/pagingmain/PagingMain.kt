@@ -13,7 +13,7 @@ class PagingMain(private val apiServices: ApiServices) : PagingSource<Int, ApiRe
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ApiResultData> {
         return try {
             val currentPage = params.key ?: 1
-            val responce =apiServices.getPagingCharacter(currentPage)
+            val responce = apiServices.getPagingCharacter(currentPage)
             val responceData = mutableListOf<ApiResultData>()
             val data = responce.body()?.results?: emptyList()
             responceData.addAll(data)

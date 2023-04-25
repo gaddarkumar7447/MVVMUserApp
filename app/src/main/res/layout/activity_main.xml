@@ -3,22 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-    </data>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#e9e9e9"
+        android:background="@color/white"
         tools:context=".activity.MainActivity">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:id="@+id/user"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
             android:layout_height="45dp">
 
             <EditText
@@ -56,10 +50,10 @@
             android:layout_below="@+id/user"
             android:layout_marginRight="5dp"
             android:id="@+id/recyclerViewVeil"
-            app:veilFrame_baseAlpha="0.6"
-            app:veilFrame_baseColor="@color/white"
-            app:veilFrame_highlightAlpha="1.0"
-            app:veilFrame_highlightColor="@color/white"
+            app:veilFrame_baseAlpha="0.2"
+            app:veilFrame_baseColor="@color/teal_200"
+            app:veilFrame_highlightAlpha="0.5"
+            app:veilFrame_highlightColor="@color/teal_200"
             app:veilFrame_isItemWrapContentHeight="true"
             app:veilFrame_isItemWrapContentWidth="false"
             app:veilFrame_layout="@layout/user_details"

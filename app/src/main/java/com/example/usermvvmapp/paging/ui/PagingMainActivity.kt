@@ -36,11 +36,9 @@ class PagingMainActivity : AppCompatActivity() {
 
         initializeViewModel()
 
-        setUpRecyclerView()
-
         loadData()
 
-
+        setUpRecyclerView()
     }
 
     private fun loadData() {
@@ -90,7 +88,6 @@ class PagingMainActivity : AppCompatActivity() {
                     Toast.makeText(this@PagingMainActivity, "${this.error}", Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
     }
 
