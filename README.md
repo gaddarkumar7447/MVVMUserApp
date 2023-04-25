@@ -14,7 +14,7 @@ https://user-images.githubusercontent.com/74999138/221659986-770c05d6-99df-464f-
 + Facebook Shimmer Layout.
 + Glide for image
 + Kotlin Coroutines.
-+ Network Avaibility
++ Network Availability
 
 # Benefits of using MVVM Architecture
 + Your code is decoupled.
