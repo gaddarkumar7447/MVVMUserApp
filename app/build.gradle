@@ -34,6 +34,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+
     }
 }
 
@@ -83,4 +84,9 @@ dependencies {
     // ktor
     implementation("io.ktor:ktor-client-android:1.5.4")
     implementation("io.ktor:ktor-client-gson:1.5.4")
+
+    // dragger2
+    def dagger_version = "2.44.2"
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

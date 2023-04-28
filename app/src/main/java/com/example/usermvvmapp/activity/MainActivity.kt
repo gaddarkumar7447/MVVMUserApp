@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,10 @@ import com.example.usermvvmapp.adapter.AdapterUser
 import com.example.usermvvmapp.api.ApiUtilities
 import com.example.usermvvmapp.api.UsersInterface
 import com.example.usermvvmapp.databinding.ActivityMainBinding
+import com.example.usermvvmapp.dipracaap.app.FakerApp
+import com.example.usermvvmapp.dipracaap.modelview.FakerModuleView
+import com.example.usermvvmapp.dipracaap.modelview.FakerViewModelFactory
+import com.example.usermvvmapp.draggerpractices.DraggerMainActivity
 import com.example.usermvvmapp.extension.ExtensionClass.getAllName
 import com.example.usermvvmapp.extension.ExtensionClass.getUserLocation
 import com.example.usermvvmapp.ktor.activity.KtorActivity
@@ -24,6 +29,7 @@ import com.example.usermvvmapp.paging.ui.PagingMainActivity
 import com.example.usermvvmapp.utilities.ApiResponce
 import com.example.usermvvmapp.utilities.SelectItem
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), SelectItem {
     private lateinit var binding: ActivityMainBinding
@@ -31,15 +37,37 @@ class MainActivity : AppCompatActivity(), SelectItem {
     private lateinit var users: MutableList<Result>
     private lateinit var modelViewClass: ModelViewClass
 
+    @Inject
+    lateinit var fakerViewModelFactory: FakerViewModelFactory
+
+    companion object{
+        lateinit var fakerViewModule: FakerModuleView
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        (application as FakerApp).applicationComponent.inject(this)
+
+        fakerViewModule = ViewModelProvider(this, fakerViewModelFactory)[FakerModuleView::class.java]
+        fakerViewModule.getFaker()
+        fakerViewModule.fakerLiveData.observe(this){ modalFakers ->
+            if (modalFakers == null){
+                Log.d("Image1", "null")
+            }
+
+            modalFakers?.forEach {
+                Log.d("Image1", it.image+" -> ${it.id}")
+            }
+        }
+
         users = mutableListOf()
 
         binding.paging.setOnClickListener { startActivity(Intent(this, PagingMainActivity::class.java)) }
         binding.ktor.setOnClickListener { startActivity(Intent(this, KtorActivity::class.java)) }
+        binding.dragger.setOnClickListener { startActivity(Intent(this, DraggerMainActivity::class.java)) }
 
         initializeViewModel()
 
@@ -65,8 +93,8 @@ class MainActivity : AppCompatActivity(), SelectItem {
                     binding.recyclerViewVeil.veil()
                 }
                 is ApiResponce.Success -> {
-                    users = it.data?.results as MutableList<Result>
-                    adapterUser = it.data.results.let { it1 -> AdapterUser(this@MainActivity, it1, this) }
+                    //users = it.data?.results as MutableList<Result>
+                    adapterUser = it.data?.results.let { it1 -> AdapterUser(this@MainActivity, it1!!, this) }
                     binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
                     adapterUser.notifyDataSetChanged()
                     binding.recyclerViewVeil.unVeil()
