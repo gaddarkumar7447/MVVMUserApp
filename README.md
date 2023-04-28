@@ -9,6 +9,7 @@ https://user-images.githubusercontent.com/74999138/221659986-770c05d6-99df-464f-
 
 # Built With
 + MVVM Architecture
++ Dagger2
 + Modern Splash Screen
 + Retrofit (for API Calling).
 + Facebook Shimmer Layout.
