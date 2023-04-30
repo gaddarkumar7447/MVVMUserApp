@@ -1,8 +1,8 @@
-package com.example.usermvvmapp.dipracaap.modelview
+package com.example.usermvvmapp.difakerapi.modelview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.usermvvmapp.dipracaap.repo.FakerRepo
+import com.example.usermvvmapp.difakerapi.repo.FakerRepo
 import javax.inject.Inject
 
 

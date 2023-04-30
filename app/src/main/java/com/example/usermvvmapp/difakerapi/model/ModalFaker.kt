@@ -1,4 +1,4 @@
-package com.example.usermvvmapp.dipracaap.model
+package com.example.usermvvmapp.difakerapi.model
 
 data class ModalFaker(
     val id : Int,

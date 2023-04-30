@@ -1,6 +1,6 @@
-package com.example.usermvvmapp.dipracaap.retorfit
+package com.example.usermvvmapp.difakerapi.retorfit
 
-import com.example.usermvvmapp.dipracaap.model.ModalFaker
+import com.example.usermvvmapp.difakerapi.model.ModalFaker
 import retrofit2.Response
 import retrofit2.http.GET
 import javax.inject.Named

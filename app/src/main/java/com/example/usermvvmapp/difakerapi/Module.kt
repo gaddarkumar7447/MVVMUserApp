@@ -1,12 +1,11 @@
-package com.example.usermvvmapp.dipracaap
+package com.example.usermvvmapp.difakerapi
 
 import android.content.Context
-import com.example.usermvvmapp.dipracaap.retorfit.FakerApi
+import com.example.usermvvmapp.difakerapi.retorfit.FakerApi
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -24,7 +23,7 @@ class Module(private val context: Context) {
         return retrofit.create(FakerApi::class.java)
     }
 
-    @Named("context")
+
     @Provides
     fun getContext() = context
 }

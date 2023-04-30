@@ -14,9 +14,9 @@ import com.example.usermvvmapp.adapter.AdapterUser
 import com.example.usermvvmapp.api.ApiUtilities
 import com.example.usermvvmapp.api.UsersInterface
 import com.example.usermvvmapp.databinding.ActivityMainBinding
-import com.example.usermvvmapp.dipracaap.app.FakerApp
-import com.example.usermvvmapp.dipracaap.modelview.FakerModuleView
-import com.example.usermvvmapp.dipracaap.modelview.FakerViewModelFactory
+import com.example.usermvvmapp.difakerapi.app.FakerApp
+import com.example.usermvvmapp.difakerapi.modelview.FakerModuleView
+import com.example.usermvvmapp.difakerapi.modelview.FakerViewModelFactory
 import com.example.usermvvmapp.draggerpractices.DraggerMainActivity
 import com.example.usermvvmapp.extension.ExtensionClass.getAllName
 import com.example.usermvvmapp.extension.ExtensionClass.getUserLocation
@@ -34,7 +34,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(), SelectItem {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapterUser: AdapterUser
-    private lateinit var users: MutableList<Result>
+    private lateinit var users: List<Result>
     private lateinit var modelViewClass: ModelViewClass
 
     @Inject
@@ -72,8 +72,6 @@ class MainActivity : AppCompatActivity(), SelectItem {
         initializeViewModel()
 
         callViewModelMethod()
-
-        searchData()
     }
 
     private fun initializeViewModel() {
@@ -93,11 +91,12 @@ class MainActivity : AppCompatActivity(), SelectItem {
                     binding.recyclerViewVeil.veil()
                 }
                 is ApiResponce.Success -> {
-                    //users = it.data?.results as MutableList<Result>
-                    adapterUser = it.data?.results.let { it1 -> AdapterUser(this@MainActivity, it1!!, this) }
+                    users = it.data?.results!!
+                    adapterUser = it.data.results.let { it1 -> AdapterUser(this@MainActivity, it1, this) }
                     binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
                     adapterUser.notifyDataSetChanged()
                     binding.recyclerViewVeil.unVeil()
+                    searchData()
                 }
                 is ApiResponce.Error -> {
                     Snackbar.make(binding.root, it.message.toString(), Snackbar.LENGTH_LONG).show()
@@ -131,10 +130,7 @@ class MainActivity : AppCompatActivity(), SelectItem {
                 }
 
                 adapterUser = AdapterUser(this@MainActivity, filteredUsers, this@MainActivity)
-                binding.recyclerViewVeil.setAdapter(
-                    adapterUser,
-                    LinearLayoutManager(this@MainActivity)
-                )
+                binding.recyclerViewVeil.setAdapter(adapterUser, LinearLayoutManager(this@MainActivity))
                 binding.recyclerViewVeil.unVeil()
             }
 

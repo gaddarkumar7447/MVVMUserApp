@@ -1,4 +1,4 @@
-package com.example.usermvvmapp.dipracaap
+package com.example.usermvvmapp.difakerapi
 
 import com.example.usermvvmapp.activity.MainActivity
 import dagger.Component
